@@ -112,8 +112,8 @@ addStyle : Html Msg -> List (String,String) -> Html Msg
 addStyle thing styles =
     thing
 
-buttonFor : Thing -> String -> Html Msg
-buttonFor thing name =
+buttonFor : Model -> Thing -> String -> Html Msg
+buttonFor model thing name =
     let size = "160px" in 
         button [ onClick (Choose thing name), class (name ++ " button"), style buttonStyle ] [ buttonImgFor name ]
 
@@ -221,6 +221,17 @@ thingAccessor thing =
         -- Sensei,Whatever 
         _ -> (.name, (\x y -> {x | name = y}))
 
+getter thing =
+    case thing of
+        Element -> .element
+        BattleClass -> .class
+        --Sensei -> .name, (\x y -> {x | name = y}))
+        _ -> .name
+
+accessor thing =
+    let (getter, setter) = thingAccessor thing in
+        getter
+
 clearName model =
     {model | name = ""}
 
@@ -245,11 +256,11 @@ update msg model =
 
 -- VIEW
 
-selectorButtons : model -> Html Msg
+selectorButtons : Model -> Html Msg
 selectorButtons model =
     div [class "selector-buttons"] [
-        div [class "battle-class"] ( List.map (\name -> buttonFor BattleClass name) battleClassesList )
-        , div [class "Elements"] ( List.map (\name -> buttonFor Element name) elementList )
+        div [class "battle-class"] ( List.map (\name -> buttonFor model BattleClass name) battleClassesList )
+        , div [class "Elements"] ( List.map (\name -> buttonFor model Element name) elementList )
     ]
 
 
@@ -260,7 +271,7 @@ view model =
         , div [ class "foo"] [ text (toString model) ]
         , selectorButtons model
         , hr [] []
-        , div [ class "images"] ( List.map (\key -> ( buttonFor Sensei key ) ) (List.map .name (currentSkylanders model) ))
+        , div [ class "images"] ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model) ))
         , div [] [ text (toString (List.map .name (currentSkylanders model) ))]
         ]
 
