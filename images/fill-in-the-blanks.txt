@@ -1,0 +1,3 @@
+ll -lsr | grep ' 84 ' | awk '{print $10}' | xargs -n1 -I{} grep {} download-all-images.sh | xargs -n1 -I{} bash -c "{}"
+
+

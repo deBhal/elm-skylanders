@@ -1,0 +1,54 @@
+,  Air Strike:Air_Strike_Icon.png
+,  Air:AirSymbolSkylanders.png
+,  Ambush:Ambush_Icon.png
+,  Aurora:Aurora_Icon.png
+,  Bad Juju:Bad_Juju_Icon.png
+,  Barbella:Barbella_Icon.png
+,  Bazooker:Bazooker_symbol.png
+,  Blaster-Tron:Blaster-Tron_Icon.png
+,  Boom Bloom:Boom_Bloom_Icon.png
+,  Bowslinger:Bowslinger_symbol.png
+,  Brawler:Brawler_symbol.png
+,  Buckshot:Buckshot_Icon.png
+,  Chain Reaction:Chain_Reaction_Icon.png
+,  Chompy Mage:Chompy_Mage_Icon.png
+,  Chopscotch:Chopscotch_Icon.png
+,  Crash Bandicoot:Crash_Bandicoot_Icon.png
+,  Dark:DarkSymbolSkylanders.png
+,  Dr. Krankcase:Dr._Krankcase_Icon.png
+,  Dr. Neo Cortex:Dr._Neo_Cortex_Icon.png
+,  Earth:EarthSymbolSkylanders.png
+,  Ember:Ember_Icon.png
+,  Fire:FireSymbolSkylanders.png
+,  Flare Wolf:Flare_Wolf_Icon.png
+,  Golden Queen:Golden_Queen_Icon.png
+,  Grave Clobber:Grave_Clobber_Icon.png
+,  Hood Sickle:Hood_Sickle_Icon.png
+,  Kaos:KaosSymbolSkylanders.png
+,  Kaos:Kaos_Icon.png
+,  Kaos:Kaos_symbol.png
+,  King Pen:King_Pen_Icon.png
+,  Knight:Knight_symbol.png
+,  Life:LifeSymbolSkylanders.png
+,  Light:LightSymbolSkylanders.png
+,  Magic:MagicSymbolSkylanders.png
+,  Mysticat:Mysticat_Icon.png
+,  Ninja:Ninja_symbol.png
+,  Pain-Yatta:Pain-Yatta_Icon.png
+,  Pit Boss:Pit_Boss_Icon.png
+,  Quickshot:Quickshot_symbol.png
+,  Ro-Bow:Ro-Bow_Icon.png
+,  Senseis:Senseis.png
+,  Sentinel:Sentinel_symbol.png
+,  Smasher:Smasher_symbol.png
+,  Sorcerer:Sorcerer_symbol.png
+,  Starcast:Starcast_Icon.png
+,  Swashbuckler:Swashbuckler_symbol.png
+,  Tae Kwon Crow:Tae_Kwon_Crow_Icon.png
+,  Tech:TechSymbolSkylanders.png
+,  Tidepool:Tidepool_Icon.png
+,  Tri-Tip:Tri-Tip_Icon.png
+,  Undead:UndeadSymbolSkylanders.png
+,  Water:WaterSymbolSkylanders.png
+,  Wild Storm:Wild_Storm_Icon.png
+,  Wolfgang:Wolfgang_Icon.png
