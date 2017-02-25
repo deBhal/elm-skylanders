@@ -11,17 +11,17 @@ main =
 
 type alias Model =
     { name : String
-    , class: String
     , element: String
+    , class: String
     }
 
 model : Model
-model = 
+model =
     Model "" "" ""
 
-type alias Skylander = 
-    { name : String 
-    , element : String 
+type alias Skylander =
+    { name : String
+    , element : String
     , class : String }
 
 mappings : List Skylander
@@ -60,7 +60,7 @@ mappings =
   Skylander "Dr. Neo Cortex" "Tech" "Sorcerer"
   ]
 
-sklanders = mappings
+skylanders = mappings
 
 type Element = Air | Dark | Earth | Fire | Kaos | Life | Light | Magic | Tech | Undead | Water
 type BattleClass = Bazooker | Bowslinger | Brawler | KaosClass | Knight | Ninja | Quickshot | Sentinel | Smasher | Sorcerer | Swashbuckler
@@ -114,7 +114,7 @@ addStyle thing styles =
 
 buttonFor : Model -> Thing -> String -> Html Msg
 buttonFor model thing name =
-    let size = "160px" in 
+    let size = "160px" in
         button [ onClick (Choose thing name), class (name ++ " button"), style buttonStyle ] [ buttonImgFor name ]
 
 imageFor : String -> String
@@ -213,12 +213,13 @@ imageFiles = Dict.fromList
 type Msg
     = Choose Thing String
 
+
 thingAccessor thing =
     case thing of
         Element -> (.element, (\x y -> {x | element = y}))
         BattleClass -> (.class, (\x y -> {x | class = y}))
         Sensei -> (.name, (\x y -> {x | name = y}))
-        -- Sensei,Whatever 
+        -- Sensei,Whatever
         _ -> (.name, (\x y -> {x | name = y}))
 
 getter thing =
@@ -235,7 +236,7 @@ accessor thing =
 clearName model =
     {model | name = ""}
 
-clearClassElement model = 
+clearClassElement model =
     {model | class = "", element = ""}
 
 update: Msg -> Model -> Model
@@ -254,25 +255,58 @@ update msg model =
             let (get, set) = thingAccessor thing in
                 (set model (if get model == name then "" else name ))
 
+lookupSkylander : String -> Skylander
+lookupSkylander name =
+    let candidate = List.head <| List.filter (\skylander -> skylander.name == name) skylanders
+    in
+    case candidate of
+        Nothing -> { name = "", element = "", class = "" }
+        Just x -> x
+
+nameOnly : Model -> Bool
+nameOnly model =
+    model.name /= "" &&
+    model.class == "" &&
+    model.element == ""
+
 -- VIEW
+
+selectedButtons : Model -> List ( Html Msg )
+selectedButtons model =
+    let source =
+            if nameOnly model
+                then lookupSkylander model.name
+                else model
+    in
+    List.concat
+        (List.map
+            (\(get, thing) -> case get source of
+                "" -> []
+                x -> [ buttonFor model thing x ] )
+            [ (.class, BattleClass), (.element, Element)] )
 
 selectorButtons : Model -> Html Msg
 selectorButtons model =
-    div [class "selector-buttons"] [
+    div [class "selector-buttons", style[("flex-direction","column")]] [
         div [class "battle-class"] ( List.map (\name -> buttonFor model BattleClass name) battleClassesList )
         , div [class "Elements"] ( List.map (\name -> buttonFor model Element name) elementList )
     ]
 
+selectedSkylanders : Model -> List (Html Msg)
+selectedSkylanders model =
+    let skylanderButtons = ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model)))
+    in
+    skylanderButtons
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ h1 [] [ text "Skylanders"]
-        , div [ class "foo"] [ text (toString model) ]
-        , selectorButtons model
+    div [ style [("display", "flex"),("flex-flow", "column wrap")]]
+        [ selectorButtons model
         , hr [] []
-        , div [ class "images"] ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model) ))
-        , div [] [ text (toString (List.map .name (currentSkylanders model) ))]
+        --, div [ class "images"] ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model)))
+        , div [ class "images", style [("flex-wrap", "wrap")]] (List.concat [ selectedSkylanders model, selectedButtons model ])
+        --, div [ class "foo"] [ text (toString model) ]
+        --, div [] [ text (toString (List.map .name (currentSkylanders model) ))]
         ]
 
 
