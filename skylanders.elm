@@ -301,6 +301,18 @@ selectedSkylanders model =
     in
     skylanderButtons
 
+skylanderName : Model -> String
+skylanderName model =
+    let { name, element, class } = model
+    in case (name, element, class ) of
+        ("", "", _) -> ""
+        ("", _, "") -> ""
+        ("", class, element) ->
+            case List.head (currentSkylanders model) of
+                Just x -> x.name
+                Nothing -> ""
+        ( name, _, _ ) -> name
+
 view : Model -> Html Msg
 view model =
     div [ style [("display", "flex"),("flex-flow", "column wrap")]]
@@ -310,6 +322,7 @@ view model =
         , div [ class "images", style [("flex-wrap", "wrap")]] (selectedSkylanders model)
         --, div [ class "foo"] [ text (toString model) ]
         --, div [] [ text (toString (List.map .name (currentSkylanders model) ))]
+        , div [] [text (skylanderName model)]
         ]
 
 
