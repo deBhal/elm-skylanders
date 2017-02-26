@@ -4,25 +4,19 @@ import Html.Attributes exposing (class, src, style, height, width)
 import Dict
 import Set
 
-main =
-    Html.beginnerProgram { model = model, view = view, update = update }
 
 -- MODEL
 
-type alias Model =
-    { name : String
-    , element: String
-    , class: String
-    }
-
-model : Model
-model =
-    Model "" "" ""
+type alias Model = Skylander
 
 type alias Skylander =
     { name : String
     , element : String
     , class : String }
+
+main =
+    Html.beginnerProgram { model = Skylander "" "" "", view = view, update = update }
+
 
 mappings : List Skylander
 mappings =
