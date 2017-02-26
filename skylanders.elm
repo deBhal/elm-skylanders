@@ -65,7 +65,7 @@ skylanders = mappings
 type Element = Air | Dark | Earth | Fire | Life | Light | Magic | Tech | Undead | Water | Kaos
 type BattleClass = Bazooker | Bowslinger | Brawler | Knight | Ninja | Quickshot | Sentinel | Smasher | Sorcerer | Swashbuckler | KaosClass
 
-type Thing = Element | BattleClass | Sensei | Whatever
+type Thing = Element | BattleClass | Sensei
 
 imageFileNameForBattleClass : BattleClass -> String
 imageFileNameForBattleClass class =
@@ -219,8 +219,6 @@ thingAccessor thing =
         Element -> (.element, (\x y -> {x | element = y}))
         BattleClass -> (.class, (\x y -> {x | class = y}))
         Sensei -> (.name, (\x y -> {x | name = y}))
-        -- Sensei,Whatever
-        _ -> (.name, (\x y -> {x | name = y}))
 
 getter thing =
     case thing of
@@ -250,10 +248,6 @@ update msg model =
 
         Choose Sensei name ->
             clearClassElement { model | name = if model.name == name then "" else name }
-
-        Choose thing name ->
-            let (get, set) = thingAccessor thing in
-                (set model (if get model == name then "" else name ))
 
 lookupSkylander : String -> Skylander
 lookupSkylander name =
