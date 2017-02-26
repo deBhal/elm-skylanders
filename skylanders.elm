@@ -258,7 +258,9 @@ update msg model =
             clearName { model | element = if model.element == name then "" else name }
 
         Choose Sensei name ->
-            if model.name == name
+            let target = lookupSkylander name in
+            if model.name == name ||
+                ( model.element == target.element && model.class == model.class)
                 then Skylander "" "" ""
                 else lookupSkylander name
 
