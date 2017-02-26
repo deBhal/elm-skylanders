@@ -295,8 +295,8 @@ selectorButtons model =
         , div [class "Elements"] ( List.map (\name -> buttonFor model Element name) elementList )
     ]
 
-selectedSkylanders : Model -> List (Html Msg)
-selectedSkylanders model =
+selectedSkylanderButtons : Model -> List (Html Msg)
+selectedSkylanderButtons model =
     let skylanderButtons = ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model)))
     in
     skylanderButtons
@@ -319,7 +319,7 @@ view model =
         [ selectorButtons model
         , hr [] []
         --, div [ class "images"] ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model)))
-        , div [ class "images", style [("flex-wrap", "wrap")]] (selectedSkylanders model)
+        , div [ class "images", style [("flex-wrap", "wrap")]] (selectedSkylanderButtons model)
         --, div [ class "foo"] [ text (toString model) ]
         --, div [] [ text (toString (List.map .name (currentSkylanders model) ))]
         , div [] [text (skylanderName model)]
