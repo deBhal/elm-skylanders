@@ -95,14 +95,19 @@ buttonStyle =
         ]
 
 selectedButtonStyle = [
-    ("background","yellow")]
+    ("outline", "dashed black 4px")]
 
 imgFor : String -> Html Msg
 imgFor thing =
     img [src (imageFor thing)] []
 
 
---isSelected : Model String -> Bool
+checkSelected : Model -> Thing -> String -> Bool
+checkSelected model thing name =
+    case thing of
+        Element ->  model.element == name
+        BattleClass -> model.class == name
+        Sensei -> False
 
 buttonImgFor : String -> Html Msg
 buttonImgFor thing =
@@ -114,8 +119,14 @@ addStyle thing styles =
 
 buttonFor : Model -> Thing -> String -> Html Msg
 buttonFor model thing name =
-    let size = "160px" in
-        button [ onClick (Choose thing name), class (name ++ " button"), style buttonStyle ] [ buttonImgFor name ]
+    let isSelected = checkSelected model thing name
+        totalStyle = buttonStyle ++
+            if isSelected then selectedButtonStyle else [] ++
+            case thing of
+                Sensei -> []
+                _ -> [("max-size","60px")] -- Element, Battleclass
+    in
+    button [ onClick (Choose thing name), class (name ++ " button " ++ (toString isSelected)), style totalStyle ] [ buttonImgFor name ]
 
 imageFor : String -> String
 imageFor target =
@@ -247,7 +258,9 @@ update msg model =
             clearName { model | element = if model.element == name then "" else name }
 
         Choose Sensei name ->
-            clearClassElement { model | name = if model.name == name then "" else name }
+            if model.name == name
+                then Skylander "" "" ""
+                else lookupSkylander name
 
 lookupSkylander : String -> Skylander
 lookupSkylander name =
@@ -298,7 +311,7 @@ view model =
         [ selectorButtons model
         , hr [] []
         --, div [ class "images"] ( List.map (\key -> ( buttonFor model Sensei key ) ) (List.map .name (currentSkylanders model)))
-        , div [ class "images", style [("flex-wrap", "wrap")]] (List.concat [ selectedSkylanders model, selectedButtons model ])
+        , div [ class "images", style [("flex-wrap", "wrap")]] (selectedSkylanders model)
         --, div [ class "foo"] [ text (toString model) ]
         --, div [] [ text (toString (List.map .name (currentSkylanders model) ))]
         ]
