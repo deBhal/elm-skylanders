@@ -52,18 +52,18 @@ mappings =
   Skylander "Golden Queen" "Earth" "Sorcerer",
   Skylander "Grave Clobber" "Water" "Brawler",
   Skylander "Hood Sickle" "Dark" "Sentinel",
-  Skylander "KaosSensei" "KaosElement" "KaosClass",
   Skylander "Pain-Yatta" "Magic" "Smasher",
   Skylander "Tae Kwon Crow" "Fire" "Ninja",
   Skylander "Wolfgang" "Undead" "Bowslinger",
   Skylander "Crash Bandicoot" "Life" "Brawler",
-  Skylander "Dr. Neo Cortex" "Tech" "Sorcerer"
+  Skylander "Dr. Neo Cortex" "Tech" "Sorcerer",
+  Skylander "KaosSensei" "KaosElement" "KaosClass"
   ]
 
 skylanders = mappings
 
-type Element = Air | Dark | Earth | Fire | Kaos | Life | Light | Magic | Tech | Undead | Water
-type BattleClass = Bazooker | Bowslinger | Brawler | KaosClass | Knight | Ninja | Quickshot | Sentinel | Smasher | Sorcerer | Swashbuckler
+type Element = Air | Dark | Earth | Fire | Life | Light | Magic | Tech | Undead | Water | Kaos
+type BattleClass = Bazooker | Bowslinger | Brawler | Knight | Ninja | Quickshot | Sentinel | Smasher | Sorcerer | Swashbuckler | KaosClass
 
 type Thing = Element | BattleClass | Sensei | Whatever
 
@@ -71,10 +71,10 @@ imageFileNameForBattleClass : BattleClass -> String
 imageFileNameForBattleClass class =
     toString class ++ "_symbol.png"
 
-battleClassesList = ["Bazooker", "Bowslinger", "Brawler", "KaosClass", "Knight", "Ninja", "Quickshot", "Sentinel", "Smasher", "Sorcerer", "Swashbuckler"]
+battleClassesList = ["Bazooker", "Bowslinger", "Brawler", "Knight", "Ninja", "Quickshot", "Sentinel", "Smasher", "Sorcerer", "Swashbuckler", "KaosClass"]
 battleClassesSet = Set.fromList battleClassesList
 
-elementList = Set.toList ( Set.fromList( List.map .element mappings) )
+elementList = ( Set.toList <| Set.remove "KaosElement" <| Set.fromList <| List.map .element mappings ) ++ ["KaosElement"]
 
 --imageFileName : { Element | BattleClass } -> String
 --imageFileName kind thing = case kind of
@@ -179,9 +179,6 @@ imageFiles = Dict.fromList
   , ("Grave Clobber", "Grave_Clobber_Icon.png")
   , ("Hood Sickle", "Hood_Sickle_Icon.png")
   , ("King Pen", "King_Pen_Icon.png")
-  , ("KaosElement", "KaosSymbolSkylanders.png")
-  , ("KaosSensei", "Kaos_Icon.png")
-  , ("KaosClass", "Kaos_symbol.png")
   , ("Knight", "Knight_symbol.png")
   , ("Life", "LifeSymbolSkylanders.png")
   , ("Light", "LightSymbolSkylanders.png")
@@ -206,6 +203,9 @@ imageFiles = Dict.fromList
   , ("Water", "WaterSymbolSkylanders.png")
   , ("Wild Storm", "Wild_Storm_Icon.png")
   , ("Wolfgang", "Wolfgang_Icon.png")
+  , ("KaosElement", "KaosSymbolSkylanders.png")
+  , ("KaosSensei", "Kaos_Icon.png")
+  , ("KaosClass", "Kaos_symbol.png")
   ]
 
 -- UPDATE
