@@ -253,7 +253,7 @@ update msg model =
         Choose Sensei name ->
             let target = lookupSkylander name in
             if model.name == name ||
-                ( model.element == target.element && model.class == model.class)
+                ( model.element == target.element && model.class == target.class)
                 then Skylander "" "" ""
                 else lookupSkylander name
 
