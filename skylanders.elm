@@ -229,8 +229,7 @@ getter thing =
     case thing of
         Element -> .element
         BattleClass -> .class
-        --Sensei -> .name, (\x y -> {x | name = y}))
-        _ -> .name
+        Sensei -> .name
 
 accessor thing =
     let (getter, setter) = thingAccessor thing in
