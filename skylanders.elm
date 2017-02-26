@@ -51,12 +51,12 @@ mappings =
   Skylander "Wolfgang" "Undead" "Bowslinger",
   Skylander "Crash Bandicoot" "Life" "Brawler",
   Skylander "Dr. Neo Cortex" "Tech" "Sorcerer",
-  Skylander "KaosSensei" "KaosElement" "KaosClass"
+  Skylander "Kaos" "KaosElement" "KaosClass"
   ]
 
 skylanders = mappings
 
-type Element = Air | Dark | Earth | Fire | Life | Light | Magic | Tech | Undead | Water | Kaos
+type Element = Air | Dark | Earth | Fire | Life | Light | Magic | Tech | Undead | Water | KaosElement
 type BattleClass = Bazooker | Bowslinger | Brawler | Knight | Ninja | Quickshot | Sentinel | Smasher | Sorcerer | Swashbuckler | KaosClass
 
 type Thing = Element | BattleClass | Sensei
@@ -209,7 +209,7 @@ imageFiles = Dict.fromList
   , ("Wild Storm", "Wild_Storm_Icon.png")
   , ("Wolfgang", "Wolfgang_Icon.png")
   , ("KaosElement", "KaosSymbolSkylanders.png")
-  , ("KaosSensei", "Kaos_Icon.png")
+  , ("Kaos", "Kaos_Icon.png")
   , ("KaosClass", "Kaos_symbol.png")
   ]
 
