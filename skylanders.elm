@@ -194,7 +194,6 @@ imageFiles = Dict.fromList
   , ("Pit Boss", "Pit_Boss_Icon.png")
   , ("Quickshot", "Quickshot_symbol.png")
   , ("Ro-Bow", "Ro-Bow_Icon.png")
-  , ("Senseis", "Senseis.png")
   , ("Sentinel", "Sentinel_symbol.png")
   , ("Smasher", "Smasher_symbol.png")
   , ("Sorcerer", "Sorcerer_symbol.png")
