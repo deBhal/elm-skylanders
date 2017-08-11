@@ -1,6 +1,8 @@
 Skylanders.elm
 ==============
 
+https://debhal.github.io/elm-skylanders/
+
 This is a little toy to explore the elements and classes of the Skylanders Imaginators Senseis I built for my son to play, and to check out elm.
 
 You can run it over your locally with
